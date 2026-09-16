@@ -4,9 +4,18 @@ An end-to-end machine learning project for predicting loan default risk using cu
 
 ## Project Overview
 
-This project focuses on predicting whether a customer is likely to default on a loan. The analysis combines the main application dataset with historical bureau records, previous applications, POS/cash loan history, credit-card behavior, and installment payment history.
+This project aims to predict whether a customer is likely to default on a loan using the Home Credit dataset.
 
-The workflow includes data cleaning, historical data aggregation, feature selection, model comparison, hyperparameter tuning, and threshold optimization.
+The project combines the main customer application data with historical financial information from:
+
+* Bureau records
+* Bureau balance history
+* Previous applications
+* POS/Cash loan history
+* Credit card history
+* Installment payment history
+
+The historical datasets are aggregated at the customer level and merged with the main application data to create a final modeling dataset.
 
 ## Project Workflow
 
@@ -29,9 +38,11 @@ Customer-Level Feature Aggregation
        ↓
 Final Modeling Dataset
        ↓
+Data Validation
+       ↓
 Feature Selection
        ↓
-Model Comparison
+Baseline Model Comparison
        ↓
 Hyperparameter Tuning
        ↓
@@ -40,16 +51,16 @@ Threshold Optimization
 Final LightGBM Model
 ```
 
-## Models
+## Models Evaluated
 
-The following models were evaluated:
+The following classification models were evaluated:
 
 * Decision Tree
 * Random Forest
 * XGBoost
 * LightGBM
 
-LightGBM achieved the best validation performance and was selected for final tuning.
+LightGBM achieved the strongest validation performance and was selected for hyperparameter tuning and final evaluation.
 
 ## Feature Selection
 
@@ -59,20 +70,33 @@ Feature selection was performed using:
 * Correlation-based redundancy analysis
 * Business interpretation of credit-risk features
 
+This helped reduce unnecessary and highly redundant features while maintaining model performance.
+
 ## Final Model
 
-The final model uses LightGBM with an optimized classification threshold of **0.15**.
+The final model is a tuned **LightGBM classifier** with a classification threshold of **0.15**.
+
+The threshold was optimized on the validation set to improve the detection of potential loan defaults.
 
 ### Final Test Results
 
-| Metric    |  Score |
-| --------- | -----: |
-| ROC-AUC   | 0.7866 |
-| Recall    | 46.75% |
-| Precision | 26.54% |
-| F1-Score  | 33.86% |
+| Metric    |      Score |
+| --------- | ---------: |
+| ROC-AUC   | **0.7866** |
+| Recall    | **46.75%** |
+| Precision | **26.54%** |
+| F1-Score  | **33.86%** |
 
-The threshold was optimized to improve the model's ability to identify potential loan defaults.
+### Confusion Matrix
+
+```text
+                 Predicted
+                 0       1
+Actual  0      37584   4819
+        1       1983   1741
+```
+
+The model identifies a substantial portion of actual defaults while prioritizing Recall through threshold optimization.
 
 ## Repository Structure
 
@@ -99,11 +123,11 @@ home-credit-default-prediction/
 
 ## Dataset
 
-The raw Home Credit datasets are not included in this repository because of their large size.
+The raw datasets are not included in this repository because of their large size.
 
-Download the dataset separately and place the required files in the local `data/` directory.
+Download the required Home Credit datasets separately and place them in the local `data/` directory before running the notebooks.
 
-## Tools and Libraries
+## Technologies Used
 
 * Python
 * Pandas
@@ -113,8 +137,21 @@ Download the dataset separately and place the required files in the local `data/
 * Scikit-learn
 * XGBoost
 * LightGBM
-* Jupyter
+* Jupyter Notebook
 * Joblib
+
+## Key Learning Outcomes
+
+This project demonstrates an end-to-end credit-risk machine learning workflow, including:
+
+* Working with multiple related financial datasets
+* Customer-level feature aggregation
+* Feature selection and redundancy reduction
+* Imbalanced classification
+* Model comparison
+* Hyperparameter tuning
+* Classification threshold optimization
+* Final model evaluation using ROC-AUC, Recall, Precision, and F1-Score
 
 
 ## 👤 Author
