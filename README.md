@@ -115,3 +115,12 @@ Download the dataset separately and place the required files in the local `data/
 * LightGBM
 * Jupyter
 * Joblib
+
+
+## 👤 Author
+
+**Chandrapal Rajput**
+
+* Linkedin : https://www.linkedin.com/in/chandrapal-deora/
+
+---
