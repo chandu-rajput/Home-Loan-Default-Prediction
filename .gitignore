@@ -181,6 +181,6 @@ cython_debug/
 .cursorindexingignore
 
 # My Custom Ignored Files
-HomeLoanDef Intro.docs
+HomeLoanDef Intro.docx
 data/
 New_Data/
